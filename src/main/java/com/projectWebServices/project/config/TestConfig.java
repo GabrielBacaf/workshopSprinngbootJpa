@@ -1,8 +1,10 @@
 package com.projectWebServices.project.config;
 
+import com.projectWebServices.project.entities.Category;
 import com.projectWebServices.project.entities.Order;
 import com.projectWebServices.project.entities.OrderStatus;
 import com.projectWebServices.project.entities.User;
+import com.projectWebServices.project.repositories.CategoryRepository;
 import com.projectWebServices.project.repositories.OrderRepository;
 import com.projectWebServices.project.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.context.annotation.Profile;
 
 import java.time.Instant;
 import java.util.Arrays;
+
 
 @Configuration
 @Profile("test")
@@ -23,6 +26,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -33,7 +39,15 @@ public class TestConfig implements CommandLineRunner {
         Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:07z"), OrderStatus.WAITING_PAYMENT, u2);
         Order o3 = new Order(null, Instant.parse("2019-07-22T19:00:07z"),OrderStatus.WAITING_PAYMENT,u1);
 
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "books");
+        Category cat3 = new Category(null, "Computers");
+
+
+
+
         userRepository.saveAll(Arrays.asList(u1,u2));
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
     }
 }

@@ -1,7 +1,6 @@
 package com.projectWebServices.project.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
@@ -9,6 +8,8 @@ import java.io.Serializable;
 @Table(name = "tb_category")
 public class Category implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
@@ -24,7 +25,7 @@ public class Category implements Serializable {
 
     public void setName(String name) { this.name = name; }
 
-    @Override
+   @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
