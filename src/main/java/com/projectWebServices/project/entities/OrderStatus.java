@@ -8,13 +8,12 @@ public enum OrderStatus {
     DELIVERED(4),
     CANCELED(5);
 
-    private int code;
+    private int codigo;
 
-    private OrderStatus(int code){this.code = code;}
+    private OrderStatus(int codigo){this.codigo = codigo;}
+    public int getCodigo(){return codigo;}
 
-    public int getCode(){return code;}
-
-    public  static OrderStatus valueOf(int code){for (OrderStatus value : values()) {if (value.getCode() == code) return value;}
+    public  static OrderStatus valueOf(int codigo){for (OrderStatus value : values()) {if (value.getCodigo() == codigo) return value;}
         throw new IllegalArgumentException("Invalid OrderStatus code");
         }
 }

@@ -1,10 +1,7 @@
 package com.projectWebServices.project.config;
 
 import com.projectWebServices.project.entities.*;
-import com.projectWebServices.project.repositories.CategoryRepository;
-import com.projectWebServices.project.repositories.OrderRepository;
-import com.projectWebServices.project.repositories.ProductRepository;
-import com.projectWebServices.project.repositories.UserRepository;
+import com.projectWebServices.project.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +26,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -64,6 +64,17 @@ public class TestConfig implements CommandLineRunner {
         p4.getCategories().add(cat3);
         p5.getCategories().add(cat2);
 
+        OrdemItem oi1 = new OrdemItem(o1,p1,2,p1.getPrice());
+        OrdemItem oi2 = new OrdemItem(o1,p3,1,p4.getPrice());
+        OrdemItem oi3 = new OrdemItem(o2,p3,2,p1.getPrice());
+        OrdemItem oi4 = new OrdemItem(o3,p5,2,p5.getPrice());
+
+
+
+
+
+
+        orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
         productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 
 
