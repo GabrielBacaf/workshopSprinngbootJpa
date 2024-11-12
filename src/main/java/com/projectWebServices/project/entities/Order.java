@@ -72,6 +72,12 @@ public class Order implements Serializable {
         this.client = client;
     }
 
+    double sum = 0.0;
+    public Double getTotal(){
+        for(OrdemItem somaOrder : items){  sum += somaOrder.getSubTotal();}
+        return sum;
+    }
+
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;
