@@ -27,7 +27,7 @@ public class Order implements Serializable {
     private User client;
 
     @OneToMany(mappedBy = "id.order")
-    private  Set<OrdemItem> items = new HashSet<>();
+    private Set<OrdemItem> items = new HashSet<>();
 
 
 
@@ -62,16 +62,18 @@ public class Order implements Serializable {
         return client;
     }
 
-   public Set<OrdemItem> getItems(){
+   public final Set<OrdemItem> getItems(){
         return items;
     }
+
+
 
 
 
     public OrderStatus getOrderStatus() {return OrderStatus.valueOf(orderStatus);}
 
     public void setOrderStatus(OrderStatus orderStatus) {
-        if (orderStatus == null) {this.orderStatus = orderStatus.getCodigo();}
+        if (orderStatus != null) {this.orderStatus = orderStatus.getCodigo();}
 
     }
 
