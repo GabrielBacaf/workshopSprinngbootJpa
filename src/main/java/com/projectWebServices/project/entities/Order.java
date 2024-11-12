@@ -30,10 +30,12 @@ public class Order implements Serializable {
     private Set<OrdemItem> items = new HashSet<>();
 
 
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Payment payment;
 
-    public Order(){
 
-    }
+
+    public Order(){}
 
     public Order(Long id, Instant moment, OrderStatus orderStatus ,User client) {
         this.id = id;
@@ -42,32 +44,21 @@ public class Order implements Serializable {
         this.client = client;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() {return id;}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) {this.id = id;}
 
-    public Instant getMoment() {
-        return moment;
-    }
+    public Instant getMoment() {return moment;}
 
-    public void setMoment(Instant moment) {
-        this.moment = moment;
-    }
+    public void setMoment(Instant moment) {this.moment = moment;}
 
-    public User getClient() {
-        return client;
-    }
+    public User getClient() {return client;}
 
-   public final Set<OrdemItem> getItems(){
-        return items;
-    }
+   public final Set<OrdemItem> getItems(){return items;}
 
+    public Payment getPayment() {return payment;}
 
-
+    public void setPayment(Payment payment) {this.payment = payment;}
 
 
     public OrderStatus getOrderStatus() {return OrderStatus.valueOf(orderStatus);}
